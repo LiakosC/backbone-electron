@@ -11,11 +11,11 @@ const FRAME_STATIC_H = 30;
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 700 + FRAME_STATIC_W,
-    height: 600 + FRAME_STATIC_H,
+    width: 800 + FRAME_STATIC_W,
+    height: 800 + FRAME_STATIC_H,
     frame: true,
     icon: path.resolve("./www/favicon.ico"),
-    resizable: false,
+    resizable: true,
     //title: "[Window]",
     //simpleFullscreen: true,
     //fullscreenable: true,
@@ -27,7 +27,8 @@ function createWindow () {
   mainWindow.menuBarVisible = false; // Hides menu bar.
 
   // and load the index.html of the app.
-  mainWindow.loadFile('./www/index.html')
+  //mainWindow.loadFile('./www/index.html')
+  mainWindow.loadURL('http://127.0.0.1:8888');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
