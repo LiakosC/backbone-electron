@@ -27,6 +27,6 @@ LEVELS[3] = function() {
 		if (b == 1) {y = PH.rnd.integerInRange(0, 400);}
 		else if (b == 2) {y = PH.rnd.integerInRange(800, 1200);}
 		zombie = game.create_zombie(x, y);
-		zombie.speed = 10;
+		zombie.speed = 150;
 	}
 }
