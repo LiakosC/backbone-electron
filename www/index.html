@@ -1,21 +1,71 @@
-
-
-<!DOCTYPE html>
-<html lang="en_US">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
-    <link rel="icon" href="favicon.ico">
-    <title>Title</title>
-    <link href="js/index.js" rel="preload" as="script">
-  </head>
-  <body>
-    <noscript>
-      <strong>Please enable <i>Javascript</i> it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <script type="text/javascript" src="js/index.js"></script>
-  </body>
+	<title>Terror Fire</title>
+	<!meta http-equiv = "pragma" content = "no-cache">
+	<script language = "javascript" type = "text/javascript" src = "js/phaser.min.js"></script>
+	<script language = "javascript" type = "text/javascript" src = "js/Button.js"></script>
+</head>
+<body style="background:grey;">
+</body>
 </html>
+
+<script>
+window.oncontextmenu = function(e) {e.preventDefault();}
+</script>
+<script language = "javascript" type = "text/javascript" src = "js/loading.js"></script>
+<script language = "javascript" type = "text/javascript" src = "js/menu.js"></script>
+<script language = "javascript" type = "text/javascript" src = "js/game.js"></script>
+<script language = "javascript" type = "text/javascript" src = "js/levels.js"></script>
+<script>
+
+
+var keys = {};
+var sounds = {};
+sounds.music = null;
+var hero;
+var loading = {};
+var menu = {};
+var BOOT = {};
+var PH;
+function analyze(obj) {
+	for (var key in obj) {console.log(key);}
+}
+BOOT.state = {
+	init: function() {
+		PH.input.maxPointers = 1;
+		PH.stage.disableVisibilityChange = true;
+		if (PH.device.desktop) {
+			
+		} else {
+			PH.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+			PH.scale.setMinMax(480, 260, 1024, 768);
+			PH.scale.forceLandscape = true;
+		}
+		PH.scale.pageAlignHorizontally = true;
+		PH.scale.pageAlignVertically = true;
+		PH.scale.refresh();
+	},
+	preload: function() {
+		console.log("boot preload");
+		PH.load.image("loading", "images/loading.png");
+		PH.load.image("loading_bar_empty", "images/loading_bar_empty.png");
+		PH.load.image("loading_bar", "images/loading_bar.png");
+		PH.load.image("loading_completed", "images/loading_completed.png");
+		PH.load.spritesheet("click_to_continue", "images/click_to_continue.png", 1972/4, 356/4, 16);
+	},
+	create: function() {
+		console.log("boot create");
+		PH.state.start("loading");
+	}
+}
+window.onload = function() {
+	PH = new Phaser.Game(700, 600, Phaser.CANVAS, "");
+	PH.state.add("boot", BOOT.state);
+	PH.state.add("loading", LOADING.state);
+	PH.state.add("menu", MENU.state);
+	PH.state.add("game", game.state);
+	PH.state.start("boot");
+}
+
+
+</script>
